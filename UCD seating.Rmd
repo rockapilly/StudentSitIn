@@ -1,7 +1,7 @@
 ---
 title: "Student Sit In"
-author: "your name here"
-date: "10/26/2019"
+author: "Mirian Maldonado"
+date: "10/28/2019"
 output: 
   html_document:
     toc: true
@@ -22,7 +22,7 @@ Students at UCD- is there a relation between where one sits and one's major?
 
 <!-- where is the data found?  Is this an experiment or an observational study?  !-->
 
-Data from this study came from... 
+Data from this study came from the USCDdataframe with multiple variables out of 173 students.
 
 
 
@@ -49,42 +49,45 @@ names(UCDdataframe)
 what are the variable types, and indicate gaphical, numerical, and inferential methods appropriate
 for this question  !--> 
 
+We will use graphical barcharts, numerical tables and infrarential methods to find the p-value. To find out if there is a correlation between where a student sits and their major. 
+
 
 ## Data summary
 
 **Graphical summary**
 put the graphic description of the data here
 
-```{r}
-
+```{r} 
+barchartGC(~seat+major, data=UCDdataframe, main='seating+major',type='percent',xlab='seat')
 ```
 
-Explain what the graph shows
+The graph shows that Non-Liberal Arts majors prefer the back and middle seats a little more than the front but not by a lot and Liberal Arts majors prefer the front more than the middle and back. But neither likes one seat predominantly more than the other.
 
 
 **Numerical summary**
 put numerical summary here
 
 ```{r}
-
+xtab=xtabs(~seat+major,data=UCDdataframe) 
+print(xtab)
 ```
 
-Explain what the numeric summary says
+There is not much of a difference between seating preference between majors.
 
 ## Inferential Results
 put the inferential test for the the null hypothesis here
 
 ```{r}
-
+chisqtestGC(xtab)
 ```
-
-what is the p-value?
+ 
+what is the p-value? 0.2173 > 0.05 suggests there is no connection between where one sits and ones major.
 
 ## Results and conclusions
 
 <!-- explain-- is there evidence that certain majors tend to sit in particular areas of the class?  Can the results of this test be generalized to all majors in all universities? !-->
 
-explain the result, can the result be generalized?
+There is no evidence that certain majors lend to sit in particular areas of the class. The P-value was 0.2173 which is greater than 0.05 so we fail to reject the null hypothesis.
 
 <!--
 push results to your github account, turn in the URL
